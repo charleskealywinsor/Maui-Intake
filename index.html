@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensive Disaster Recovery Housing Intake Application</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h2, h3 { color: #333; }
+        form { max-width: 1000px; margin: auto; }
+        .form-group { margin-bottom: 15px; }
+        label { font-weight: bold; }
+        input, select, textarea { width: 100%; padding: 8px; margin-top: 5px; box-sizing: border-box; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        button { padding: 10px 20px; background-color: #005a87; color: white; border: none; cursor: pointer; margin-bottom: 10px; }
+        button:hover { background-color: #0077b6; }
+    </style>
+    <script>
+        function addRow(tableId) {
+            let table = document.getElementById(tableId);
+            let row = table.insertRow(-1);
+            for (let i = 0; i < table.rows[1].cells.length; i++) {
+                let cell = row.insertCell(i);
+                cell.innerHTML = table.rows[1].cells[i].innerHTML;
+            }
+        }
+
+        function toggleAssets(selectElement) {
+            let assetDetail = document.getElementById("assetDetails");
+            assetDetail.style.display = selectElement.value === 'Yes' ? 'block' : 'none';
+        }
+    </script>
+</head>
+<body>
+    <h2>Disaster Recovery Housing Intake Application</h2>
+    <form>
+        <h3>1. Applicant Information</h3>
+        <label>First Name</label><input type="text">
+        <label>Last Name</label><input type="text">
+        <label>Middle Name</label><input type="text">
+        <label>Date of Birth</label><input type="date">
+        <label>Email Address</label><input type="email">
+        <label>Marital Status</label><input type="text">
+
+        <h3>2. Co-Applicant Information</h3>
+        <label>Relationship</label><input type="text">
+        <label>Full Name</label><input type="text">
+        <label>Date of Birth</label><input type="date">
+
+        <h3>3. Alternate Contact Information</h3>
+        <label>First Contact Name</label><input type="text">
+        <label>Contact Phone Number</label><input type="text">
+        <label>Second Contact Name</label><input type="text">
+        <label>Second Contact Phone Number</label><input type="text">
+
+        <h3>4. Household Composition and Characteristics</h3>
+        <table id="householdTable">
+            <tr><th>Name</th><th>Relationship</th><th>Gender</th><th>Date of Birth</th><th>Marital Status</th><th>Disabled</th><th>Additional Members (Explain)</th></tr>
+            <tr><td><input type="text"></td><td><input type="text"></td><td><select><option>M</option><option>F</option><option>X</option></select></td><td><input type="date"></td><td><input type="text"></td><td><select><option>Yes</option><option>No</option></select></td><td><textarea rows="1"></textarea></td></tr>
+        </table>
+        <button type="button" onclick="addRow('householdTable')">Add Household Member</button>
+
+        <h3>5. Race and Ethnicity</h3>
+        <label>Race</label><select multiple><option>American Indian/Alaska Native</option><option>Asian</option><option>Native Hawaiian/Pacific Islander</option><option>White</option><option>Black/African American</option><option>Other Multi-Racial</option></select>
+        <label>Ethnicity</label><select><option>Hispanic or Latino</option><option>Non-Hispanic or Latino</option></select>
+
+        <h3>6. Homeowner Eligibility Information</h3>
+        <label>Unit damaged by disaster?</label><select><option>Yes</option><option>No</option></select>
+        <label>Explain damage</label><textarea rows="2"></textarea>
+
+        <h3>7. Tenant Information</h3>
+        <label>Tenant?</label><select><option>Yes</option><option>No</option></select>
+
+        <h3>8. Other Assistance Received</h3>
+        <label>FEMA Assistance Details</label><textarea rows="2"></textarea>
+
+        <h3>9. Income Information</h3>
+        <table id="incomeTable">
+            <tr><th>Name</th><th>Student?</th><th>Income Source</th><th>Amount</th><th>Frequency</th></tr>
+            <tr><td><input type="text"></td><td><select><option>Yes</option><option>No</option></select></td><td><input type="text"></td><td><input type="number"></td><td><input type="text"></td></tr>
+        </table>
+        <button type="button" onclick="addRow('incomeTable')">Add Income Source</button>
+
+        <h3>10. Asset Information</h3>
+        <label>Other real estate owned?</label>
+        <select onchange="toggleAssets(this)"><option>No</option><option>Yes</option></select>
+        <div id="assetDetails" style="display:none;">
+            <label>Describe Assets</label>
+            <textarea rows="3"></textarea>
+        </div>
+
+        <h3>11. Applicant Certification</h3>
+        <label><input type="checkbox" required> All information provided is accurate.</label>
+
+        <h3>12. Eligibility Release</h3>
+        <label><input type="checkbox" required> Authorize eligibility verification.</label>
+
+        <button type="submit">Submit Application</button>
+    </form>
+</body>
+</html>
